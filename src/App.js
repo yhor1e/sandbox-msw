@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -9,6 +9,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={login}>login</button>
+        <button onClick={user}>user</button>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -20,6 +22,28 @@ function App() {
       </header>
     </div>
   );
+}
+
+function login() {
+  fetch("/login", { method: "POST" })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function user() {
+  fetch("/user")
+    .then((response) => response.text())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 export default App;
